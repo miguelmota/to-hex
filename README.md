@@ -26,6 +26,12 @@ console.log(toHex(new BN(256))) // '100'
 console.log(toHex('0x1', { size: 8 })) // '00000001'
 ```
 
+## Test
+
+```bash
+npm test
+```
+
 ## License
 
 [MIT](LICENSE)
