@@ -8,7 +8,7 @@
 ## Install
 
 ```bash
-npm i to-hex
+npm install to-hex
 ```
 
 ## Getting started

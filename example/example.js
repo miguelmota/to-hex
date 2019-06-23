@@ -1,4 +1,4 @@
-const toHex = require('../')
+const toHex = require('to-hex')
 const BN = require('bn.js')
 
 console.log(toHex('abc')) // '616263'
