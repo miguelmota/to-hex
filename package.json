@@ -1,8 +1,9 @@
 {
   "name": "to-hex",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Convert values to hex string",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "tape test/*.js",
     "lint": "standard --fix index.js test/test.js example/example.js"
