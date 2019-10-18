@@ -1,10 +1,13 @@
 const test = require('tape')
 const BN = require('bn.js')
+const BigNumber = require('bignumber.js')
+const Big = require('big.js')
+const Decimal = require('decimal.js')
 const { randomBytes } = require('crypto')
 const toHex = require('../')
 
 test('toHex', t => {
-  t.plan(16)
+  t.plan(20)
 
   t.equal(toHex({}), '')
   t.equal(toHex(), '')
@@ -21,6 +24,12 @@ test('toHex', t => {
   t.equal(toHex(256, { evenLength: true }), '0100')
   t.equal(toHex(new BN(256)), '100')
   t.equal(toHex(new BN('100', 16)), '100')
+  t.equal(toHex(new BigNumber(256)), '100')
+  t.equal(toHex(new BigNumber('100', 16)), '100')
+  //t.equal(toHex(new Big(256)), '100')
+  t.equal(toHex(new Big('100', 16)), '100')
+  //t.equal(toHex(new Decimal(256)), '100')
+  t.equal(toHex(new Decimal('100', 16)), '100')
 
   const bytes = randomBytes(10)
   t.equal(toHex(bytes), bytes.toString('hex'))

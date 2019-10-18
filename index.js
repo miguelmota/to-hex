@@ -1,4 +1,3 @@
-const BN = require('bn.js')
 const normalizeHex = require('normalize-hex')
 
 function toHex (value = Buffer.alloc(0), opts = {}) {
@@ -26,7 +25,7 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
   } else if (typeof value === 'object') {
     if (Buffer.isBuffer(value)) {
       result = value.toString('hex')
-    } else if (BN.isBN(value)) {
+    } else if (/(BN|BigNumber|Big|Decimal)/.test(value.constructor.name)) {
       result = value.toString(16)
     } else if (value instanceof Uint8Array) {
       result = Buffer.from([
