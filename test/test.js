@@ -7,7 +7,7 @@ const { randomBytes } = require('crypto')
 const toHex = require('../')
 
 test('toHex', t => {
-  t.plan(22)
+  t.plan(23)
 
   t.equal(toHex({}), '')
   t.equal(toHex(), '')
@@ -28,11 +28,14 @@ test('toHex', t => {
   t.equal(toHex(new BN('100', 16)), '100')
   t.equal(toHex(new BigNumber(256)), '100')
   t.equal(toHex(new BigNumber('100', 16)), '100')
-  //t.equal(toHex(new Big(256)), '100')
+  // t.equal(toHex(new Big(256)), '100')
   t.equal(toHex(new Big('100', 16)), '100')
-  //t.equal(toHex(new Decimal(256)), '100')
+  // t.equal(toHex(new Decimal(256)), '100')
   t.equal(toHex(new Decimal('100', 16)), '100')
 
   const bytes = randomBytes(10)
   t.equal(toHex(bytes), bytes.toString('hex'))
+
+  const x = (n) => ({ toString: (r) => n.toString(16) })
+  t.equal(toHex(x(65)), '41')
 })

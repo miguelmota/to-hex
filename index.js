@@ -34,6 +34,15 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
       result = Buffer.from([
         ...value
       ]).toString('hex')
+    } else if (value.toString && typeof value.toString === 'function') {
+      try {
+        const h = value.toString(16)
+        if (/^[a-fA-F0-9]+$/.test(h)) {
+          result = h
+        }
+      } catch (err) {
+        // noop
+      }
     }
   }
 
