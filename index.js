@@ -13,8 +13,11 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
   if (typeof value === 'number') {
     result = value.toString(16)
   } else if (typeof value === 'string') {
+    value = value.trim()
     if (value.startsWith('0x')) {
       result = normalizeHex(value)
+    } else if (value !== '' && Number.isFinite(+value)) {
+      result = Number(value).toString(16)
     }
 
     if (!result) {

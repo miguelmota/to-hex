@@ -7,12 +7,14 @@ const { randomBytes } = require('crypto')
 const toHex = require('../')
 
 test('toHex', t => {
-  t.plan(20)
+  t.plan(22)
 
   t.equal(toHex({}), '')
   t.equal(toHex(), '')
   t.equal(toHex(''), '')
   t.equal(toHex(256), '100')
+  t.equal(toHex('256'), '100')
+  t.equal(toHex('1e3'), '3e8')
   t.equal(toHex(256, { size: 6 }).endsWith('100'), true)
   t.equal(toHex(256, { size: 6 }).length, 6)
   t.equal(toHex(256, { addPrefix: true }), '0x100')
