@@ -23,7 +23,7 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
       result = Number(value).toString(16)
     }
 
-    if (!result) {
+    if (result === opts.default) {
       result = Buffer.from(value, 'utf8').toString('hex')
     }
   } else if (typeof value === 'boolean') {
