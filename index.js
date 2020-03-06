@@ -5,12 +5,15 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
     size: 0,
     addPrefix: false,
     evenLength: false,
+    default: '',
     ...opts
   }
 
-  let result = ''
+  let result = opts.default || ''
 
-  if (typeof value === 'number') {
+  if (value === undefined || value === null) {
+      // noop
+  } else if (typeof value === 'number') {
     result = value.toString(16)
   } else if (typeof value === 'string') {
     value = value.trim()

@@ -24,6 +24,7 @@ console.log(toHex(256)) // '100'
 console.log(toHex(256, { evenLength: true })) // '0100'
 console.log(toHex(new BN(256))) // '100'
 console.log(toHex('0x1', { size: 8 })) // '00000001'
+console.log(toHex(null, { addPrefix: true, evenLength: true, default: '0' }) // '0x00'
 ```
 
 ## Test
