@@ -1,6 +1,6 @@
 const normalizeHex = require('normalize-hex')
 
-function toHex (value = Buffer.alloc(0), opts = {}) {
+function toHex (value, opts = {}) {
   opts = {
     size: 0,
     addPrefix: false,
@@ -15,7 +15,7 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
     result = opts.default
   }
 
-  if (value === '') {
+  if (value === '' || value === undefined || value === null) {
     value = result
   }
 
@@ -40,7 +40,7 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
     }
   } else if (typeof value === 'boolean') {
     result = value ? '1' : '0'
-  } else if (typeof value === 'object') {
+  } else if (typeof value === 'object' && value !== null) {
     if (Buffer.isBuffer(value)) {
       result = value.toString('hex')
     } else if (/(BN|BigNumber|Big|Decimal)/.test(value.constructor.name)) {
