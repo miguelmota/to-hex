@@ -9,7 +9,19 @@ function toHex (value = Buffer.alloc(0), opts = {}) {
     ...opts
   }
 
-  let result = opts.default || ''
+  var result = ''
+
+  if (opts.default !== '') {
+    result = opts.default
+  }
+
+  if (value === '') {
+    value = result
+  }
+
+  if (value === '0') {
+    value = 0
+  }
 
   if (value === undefined || value === null) {
       // noop
