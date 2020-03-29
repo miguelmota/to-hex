@@ -26,13 +26,13 @@ function toHex (value, opts = {}) {
   if (value === undefined || value === null) {
       // noop
   } else if (typeof value === 'number') {
-    result = value.toString(16)
+    result = (value>>0).toString(16)
   } else if (typeof value === 'string') {
     value = value.trim()
     if (value.startsWith('0x')) {
       result = normalizeHex(value)
     } else if (value !== '' && Number.isFinite(+value)) {
-      result = Number(value).toString(16)
+      result = (Number(value) >> 0).toString(16)
     }
 
     if (result === opts.default) {
