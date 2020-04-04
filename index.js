@@ -1,4 +1,5 @@
 const normalizeHex = require('normalize-hex')
+const BN = require('bn.js')
 
 function toHex (value, opts = {}) {
   opts = {
@@ -24,7 +25,7 @@ function toHex (value, opts = {}) {
   }
 
   if (value === undefined || value === null) {
-      // noop
+    // noop
   } else if (typeof value === 'number') {
     result = parseInt(Number(value), 10).toString(16)
   } else if (typeof value === 'string') {
@@ -32,7 +33,14 @@ function toHex (value, opts = {}) {
     if (value.startsWith('0x')) {
       result = normalizeHex(value)
     } else if (value !== '' && Number.isFinite(+value)) {
-      result = parseInt(Number(value), 10).toString(16)
+      // exponential notation
+      if (/e/gi.test(value)) {
+        result = parseInt(Number(value), 10).toString(16)
+      } else {
+        // truncate decimal places
+        value = value.replace(/(\.[0-9]+)/g, '')
+        result = new BN(value, 10).toString(16)
+      }
     }
 
     if (result === opts.default) {
