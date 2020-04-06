@@ -1,5 +1,5 @@
 const normalizeHex = require('normalize-hex')
-const BN = require('bn.js')
+const BN = require('bignumber.js')
 
 function toHex (value, opts = {}) {
   opts = {
@@ -35,7 +35,7 @@ function toHex (value, opts = {}) {
     } else if (value !== '' && Number.isFinite(+value)) {
       // exponential notation
       if (/e/gi.test(value)) {
-        result = parseInt(Number(value), 10).toString(16)
+        result = new BN(value, 10).toString(16)
       } else {
         // truncate decimal places
         value = value.replace(/(\.[0-9]+)/g, '')

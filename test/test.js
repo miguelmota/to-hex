@@ -7,7 +7,7 @@ const { randomBytes } = require('crypto')
 const toHex = require('../')
 
 test('toHex', t => {
-  t.plan(42)
+  t.plan(45)
 
   // invalid values
   t.equal(toHex(undefined), '')
@@ -43,6 +43,10 @@ test('toHex', t => {
   t.equal(toHex('0x56BC75E2D63100000'), '56bc75e2d63100000')
   t.equal(toHex('10000000000000000000000000000000000000'), '785ee10d5da46d900f436a000000000')
   t.equal(toHex('0x785EE10D5DA46D900F436A000000000'), '785ee10d5da46d900f436a000000000')
+
+  t.equal(toHex('112300000000000000000000000000000000000000000'), '5092409fb77fa03100f277a151e0000000000')
+  t.equal(toHex('0x5092409FB77FA03100F277A151E0000000000'), '5092409fb77fa03100f277a151e0000000000')
+  t.equal(toHex('1.123e+44'), '5092409fb77fa03100f277a151e0000000000')
 
   // hex strings
   t.equal(toHex('0x0100', { addPrefix: true }), '0x0100')
