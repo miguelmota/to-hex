@@ -6,6 +6,7 @@ function toHex (value, opts = {}) {
     size: 0,
     addPrefix: false,
     evenLength: false,
+    autoDetectString: true,
     default: '',
     ...opts
   }
@@ -32,7 +33,7 @@ function toHex (value, opts = {}) {
     value = value.trim()
     if (value.startsWith('0x')) {
       result = normalizeHex(value)
-    } else if (value !== '' && Number.isFinite(+value)) {
+    } else if (value !== '' && Number.isFinite(+value) && opts.autoDetectString) {
       // exponential notation
       if (/e/gi.test(value)) {
         result = new BN(value, 10).toString(16)

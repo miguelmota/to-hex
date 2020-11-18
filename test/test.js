@@ -7,7 +7,7 @@ const { randomBytes } = require('crypto')
 const toHex = require('../')
 
 test('toHex', t => {
-  t.plan(45)
+  t.plan(46)
 
   // invalid values
   t.equal(toHex(undefined), '')
@@ -26,6 +26,9 @@ test('toHex', t => {
   t.equal(toHex('256.6'), '100')
   t.equal(toHex('256'), '100')
   t.equal(toHex('1e3'), '3e8')
+
+  // treat decimal strings as regular strings and not numbers
+  t.equal(toHex('256', { autoDetectString: false }), '323536')
 
   // big number types
   t.equal(toHex(new BN(256)), '100')
