@@ -21,10 +21,14 @@ console.log(toHex('abc')) // '616263'
 console.log(toHex(Buffer.from('abc'))) // '616263'
 console.log(toHex('abc', { addPrefix: true })) // '0x616263'
 console.log(toHex(256)) // '100'
+console.log(toHex('256')) // '100'
 console.log(toHex(256, { evenLength: true })) // '0100'
 console.log(toHex(new BN(256))) // '100'
 console.log(toHex('0x1', { size: 8 })) // '00000001'
 console.log(toHex(null, { addPrefix: true, evenLength: true, default: '0' }) // '0x00'
+
+// treat decimal strings as regular strings and not numbers
+console.log(toHex('256', { autoDetectString:false }) // '323536'
 ```
 
 ## Test
