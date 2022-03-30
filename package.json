@@ -1,6 +1,6 @@
 {
   "name": "to-hex",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Convert values to hex string",
   "main": "index.js",
   "types": "index.d.ts",
